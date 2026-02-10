@@ -10,34 +10,52 @@ A Laravel package for integrating Single Sign-On (SSO) authentication with Bali 
 
 ## Installation
 
-### Via Composer (Local Path)
+### Via Composer (Private GitLab Repository)
 
-Add the following to your `composer.json`:
+Since this is a private repository, you need to configure Composer to access it.
+
+**Step 1:** Add the repository and package to your `composer.json`:
 
 ```json
 {
     "repositories": [
         {
-            "type": "path",
-            "url": "../sso-baliprov-sdk"
+            "type": "vcs",
+            "url": "git@gitlab.baliprov.dev:spbe-bali/sso-broker-sdk.git"
         }
     ],
     "require": {
-        "baliprov/sso-broker-sdk": "*"
+        "spbe-bali/sso-broker-sdk": "dev-master"
     }
 }
 ```
 
-Then run:
+**Step 2:** Run composer update:
 
 ```bash
-composer update
+composer update spbe-bali/sso-broker-sdk
 ```
 
-### Via Composer (Private Repository)
+> **Note:** Ensure your SSH key is added to GitLab and has access to the repository. For CI/CD pipelines, use deploy tokens or deploy keys.
+
+### Using Tagged Versions (Recommended for Production)
+
+Once tags are created in the repository, use specific versions:
+
+```json
+{
+    "require": {
+        "spbe-bali/sso-broker-sdk": "^1.0"
+    }
+}
+```
+
+To create a version tag:
 
 ```bash
-composer require baliprov/sso-broker-sdk
+cd sso-baliprov-sdk
+git tag -a v1.0.0 -m "Initial stable release"
+git push origin v1.0.0
 ```
 
 ## Configuration
