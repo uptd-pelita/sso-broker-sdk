@@ -1,5 +1,5 @@
 {
-    "name": "baliprov/sso-broker-sdk",
+    "name": "spbe-bali/sso-broker-sdk",
     "description": "SSO Broker SDK for Bali Province Applications",
     "type": "library",
     "license": "MIT",
