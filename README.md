@@ -14,29 +14,11 @@ A Laravel package for integrating Single Sign-On (SSO) authentication with Bali 
 
 Since this is a private repository, you need to configure Composer to access it.
 
-**Step 1:** Add the repository and package to your `composer.json`:
-
-```json
-{
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "git@gitlab.baliprov.dev:uptd-pelita/sso-broker-sdk.git"
-        }
-    ],
-    "require": {
-        "uptd-pelita/sso-broker-sdk": "dev-master"
-    }
-}
-```
-
-**Step 2:** Run composer update:
+**Step 1:** Run composer update:
 
 ```bash
 composer update uptd-pelita/sso-broker-sdk
 ```
-
-> **Note:** Ensure your SSH key is added to GitLab and has access to the repository. For CI/CD pipelines, use deploy tokens or deploy keys.
 
 ### Using Tagged Versions (Recommended for Production)
 
@@ -431,9 +413,9 @@ protected $middlewareAliases = [
 | Method | URI | Name | Description |
 |--------|-----|------|-------------|
 | GET/POST | /sso/authenticate | sso.authenticate | Initiate SSO login |
-| GET | /authData | sso.callback | SSO callback |
+| GET | /auth-data | sso.callback | SSO callback |
 | POST | /sso/logout | sso.logout | Logout callback from SSO |
-| GET | /keluar | sso.user-logout | User-initiated logout |
+| GET | /logout | sso.user-logout | User-initiated logout |
 | GET | /sso/check | sso.check | Check auth status (API) |
 | GET | /sso/user | sso.user | Get user data (API) |
 
