@@ -21,11 +21,11 @@ Since this is a private repository, you need to configure Composer to access it.
     "repositories": [
         {
             "type": "vcs",
-            "url": "git@gitlab.baliprov.dev:UPTD-PELITA/sso-broker-sdk.git"
+            "url": "git@gitlab.baliprov.dev:uptd-pelita/sso-broker-sdk.git"
         }
     ],
     "require": {
-        "UPTD-PELITA/sso-broker-sdk": "dev-master"
+        "uptd-pelita/sso-broker-sdk": "dev-master"
     }
 }
 ```
@@ -33,7 +33,7 @@ Since this is a private repository, you need to configure Composer to access it.
 **Step 2:** Run composer update:
 
 ```bash
-composer update UPTD-PELITA/sso-broker-sdk
+composer update uptd-pelita/sso-broker-sdk
 ```
 
 > **Note:** Ensure your SSH key is added to GitLab and has access to the repository. For CI/CD pipelines, use deploy tokens or deploy keys.
@@ -45,7 +45,7 @@ Once tags are created in the repository, use specific versions:
 ```json
 {
     "require": {
-        "UPTD-PELITA/sso-broker-sdk": "^1.0"
+        "uptd-pelita/sso-broker-sdk": "^1.0"
     }
 }
 ```
