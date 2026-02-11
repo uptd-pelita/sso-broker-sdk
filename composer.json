@@ -5,8 +5,12 @@
     "license": "MIT",
     "authors": [
         {
-            "name": "Baliprov Team",
-            "email": "dev@baliprov.go.id"
+            "name": "I Wayan Aditya Wiguna",
+            "email": "adityawiguna@baliprov.go.id"
+        },
+        {
+            "name": "I Kadek Wahyu Sudiatmika",
+            "email": "wahyu.sudiatmika@baliprov.go.id"
         }
     ],
     "require": {
