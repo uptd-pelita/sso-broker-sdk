@@ -25,7 +25,7 @@ Route::middleware($middleware)->prefix($prefix)->group(function () {
         ->name('sso.authenticate');
 
     // SSO callback route - receives token from SSO server
-    Route::get('/auth-data', [SSOBrokerController::class, 'callback'])
+    Route::get('/auth-data/{authData?}', [SSOBrokerController::class, 'callback'])
         ->name('sso.callback');
 
     // Logout callback from SSO server (for centralized logout)

@@ -44,7 +44,7 @@ return [
     | This should match the route defined in your application.
     |
     */
-    'callback_route' => env('SSO_CALLBACK_ROUTE', '/authData'),
+    'callback_route' => env('SSO_CALLBACK_ROUTE', '/auth-data'),
 
     /*
     |--------------------------------------------------------------------------

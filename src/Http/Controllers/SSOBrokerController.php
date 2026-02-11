@@ -34,11 +34,11 @@ class SSOBrokerController extends BaseController
 
     /**
      * Handle SSO callback
-     * Route: GET /authData or custom callback route
+     * Route: GET /auth-data/{authData?} or custom callback route
      */
-    public function callback(Request $request)
+    public function callback(Request $request, ?string $authData = null)
     {
-        $token = $request->get('authData') ?? $request->input('authData');
+        $token = $authData ?? $request->get('authData') ?? $request->input('authData');
 
         if (!$token) {
             return $this->handleMissingToken();

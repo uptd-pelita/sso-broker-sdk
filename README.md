@@ -5,7 +5,7 @@ A Laravel package for integrating Single Sign-On (SSO) authentication with Bali 
 ## Requirements
 
 - PHP 7.4+ or PHP 8.0+
-- Laravel 6.0, 7.0, 8.0, 9.0, 10.0, or 11.0
+- Laravel 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, or 12.0
 - GuzzleHTTP 6.0+ or 7.0+
 
 ## Installation
@@ -56,7 +56,7 @@ Add the following to your `.env` file:
 SSO_DOMAIN=https://sso.baliprov.go.id
 SSO_BROKER_CODE=your-broker-code
 SSO_JWT_SECRET=your-jwt-secret
-SSO_CALLBACK_ROUTE=/authData
+SSO_CALLBACK_ROUTE=/auth-data
 SSO_REDIRECT_AFTER_LOGIN=/dashboard
 SSO_REDIRECT_AFTER_LOGOUT=/
 SSO_NOT_AUTHORIZED_ROUTE=not-authorized
@@ -174,12 +174,12 @@ class SSOController extends BaseSSOController
     /**
      * Override callback handling
      */
-    public function callback(Request $request)
+    public function callback(Request $request, ?string $authData = null)
     {
         // Custom logic before callback
         $this->beforeCallback($request);
 
-        $response = parent::callback($request);
+        $response = parent::callback($request, $authData);
 
         // Custom logic after callback
         $this->afterCallback($request);
@@ -361,7 +361,7 @@ use App\Http\Controllers\SSOController;
 
 Route::prefix('auth')->group(function () {
     Route::get('/login', [SSOController::class, 'authenticate'])->name('login');
-    Route::get('/callback', [SSOController::class, 'callback'])->name('sso.callback');
+    Route::get('/callback/{authData?}', [SSOController::class, 'callback'])->name('sso.callback');
     Route::post('/logout-callback', [SSOController::class, 'logout'])->name('sso.logout');
     Route::get('/logout', [SSOController::class, 'userLogout'])->name('logout');
 });
@@ -413,7 +413,7 @@ protected $middlewareAliases = [
 | Method | URI | Name | Description |
 |--------|-----|------|-------------|
 | GET/POST | /sso/authenticate | sso.authenticate | Initiate SSO login |
-| GET | /auth-data | sso.callback | SSO callback |
+| GET | /auth-data/{authData?} | sso.callback | SSO callback (token in URL path or query string) |
 | POST | /sso/logout | sso.logout | Logout callback from SSO |
 | GET | /logout | sso.user-logout | User-initiated logout |
 | GET | /sso/check | sso.check | Check auth status (API) |
@@ -426,7 +426,7 @@ protected $middlewareAliases = [
 | `sso_domain` | SSO server URL | `https://sso.baliprov.go.id` |
 | `broker_code` | Broker identifier | `''` |
 | `jwt_secret` | JWT secret key | `SSO-JWT-SECRET-KEY` |
-| `callback_route` | Callback URL path | `/authData` |
+| `callback_route` | Callback URL path | `/auth-data` |
 | `redirect_after_login` | Post-login redirect | `/` |
 | `redirect_after_logout` | Post-logout redirect | `/` |
 | `not_authorized_route` | Unauthorized route name | `not-authorized` |
